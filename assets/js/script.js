@@ -16,6 +16,8 @@ form.addEventListener("submit", function (e) {
 // query the api, get the info, create the cards and append them to the container
 async function getArtifactInfo(category, search) {
     const apiKey = "fYrROKF8k13AlyBnMGPMdsPaLlRxpWfVUFrNB6ye";
+
+    // get 403 Error when putting API key in header--- keep in URL for now, look into later 
     const url = `https://api.si.edu/openaccess/api/v1.0/category/${category}/search?q=${search}&api_key=${apiKey}`;
 
     console.log(url)
