@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Museum Artifact Search Tool</title>
+</head>
+<body>
+    <div class="row text-center p-3 border-bottom border-dark">
+        <h1>Smithsonian Institue Search</h1>
+    </div>
+
+    <!-- Search Tool -->
+    <div class="d-flex flex-shrink p-3 justify-content-between gap-4">
+        <div class="flex-column">
+            <form id="searchForm">
+                <div class="mb-3">
+                    <label for="search" class="form-label">Search</label>
+                    <input type="text" name="search" class="form-control" id="search">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        <!-- Results Container -->
+         <div id="resultsContainer" class="flex-column flex-grow-1 d-flex gap-2">
+             
+         </div>
+    </div>
+    <script src="./assets/js/result.js"></script>
+</body>
+</html>
