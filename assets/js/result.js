@@ -19,35 +19,35 @@ async function getArtifactInfo(search) {
         let results = json.data;
         console.log(results)
         
+        resultsContainer.innerHTML = "";
+
         results.forEach((data) => {
-            let cardContainer = document.createElement("div");
             let cardBody = document.createElement("div");
             let title = document.createElement("h5");
             let subtitle = document.createElement('h6');
             let img = document.createElement("img");
             let paragraph = document.createElement("p");
-
-            console.log(data.description)
-            
-            cardContainer.setAttribute("class", "card");
-            cardBody.setAttribute("class", "card-body");
-            title.setAttribute("class", "card-title");
-            subtitle.setAttribute("class", "card-subtitle mb-2 text-muted");
-            paragraph.setAttribute("class", "card-text");
             
             title.textContent = data.title;
+            console.log(data.title)
             subtitle.textContent = data.artist_display;
             img.src = `https://www.artic.edu/iiif/2/${data.image_id}/full/843,/0/default.jpg`;
-            img.setAttribute("class", "card-img-top");
             let textOnly = data.description.replace(/<[^>]*>/g, '');
             paragraph.textContent = textOnly;
+            cardBody.setAttribute("class", "card-body");
+            title.setAttribute("class", "card-title");
+            paragraph.setAttribute("class", "card-text");
+            img.setAttribute("class", "card-img-top d-block w-100");
+            subtitle.setAttribute("class", "card-subtitle mb-2 text-muted");
+        
 
-            resultsContainer.append(cardContainer);
-            cardContainer.append(cardBody);
+            cardBody.append(img);
+            cardBody.append(subtitle);
             cardBody.append(title);
             cardBody.append(subtitle);
             cardBody.append(paragraph);
-            cardBody.append(img);
+            
+            resultsContainer.append(cardBody);
         })
 
     } catch (error) {
