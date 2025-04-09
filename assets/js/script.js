@@ -1,25 +1,17 @@
 let resultsContainer = document.querySelector("#resultsContainer");
 let form = document.querySelector("#searchForm");
-let categoryInput = document.querySelector('#category');
 let searchInput = document.querySelector('#search');
 
 // get form data and create variables for the data, run  variables as params for 
 form.addEventListener("submit", function (e) {
     e.preventDefault();
-
-    let category = categoryInput.value;
     let search = searchInput.value;
-    console.log(category, search)
-    getArtifactInfo(category, search)
+    getArtifactInfo(search)
 })
 
 // query the api, get the info, create the cards and append them to the container
-async function getArtifactInfo(category, search) {
-    const apiKey = "fYrROKF8k13AlyBnMGPMdsPaLlRxpWfVUFrNB6ye";
-
-    // get 403 Error when putting API key in header--- keep in URL for now, look into later 
-    const url = `https://api.si.edu/openaccess/api/v1.0/category/${category}/search?q=${search}&api_key=${apiKey}`;
-
+async function getArtifactInfo(search) {
+    const url = `https://api.artic.edu/api/v1/artworks/search?q=${search}&fields=id,title,description,artist,artist_display,place_of_origin,image_id,date_display,color,style_title,short_description`;
     console.log(url)
     try {
         const response = await fetch(url);
@@ -28,8 +20,42 @@ async function getArtifactInfo(category, search) {
         }
 
         const json = await response.json();
-        console.log(json);
+        let results = json.data;
+        console.log(results)
+        
+        results.forEach((data) => {
+            let cardContainer = document.createElement("div");
+            let cardBody = document.createElement("div");
+            let title = document.createElement("h5");
+            let subtitle = document.createElement('h6');
+            let img = document.createElement("img");
+            let paragraph = document.createElement("p");
+
+            console.log(data.description)
+            
+            cardContainer.setAttribute("class", "card");
+            cardBody.setAttribute("class", "card-body");
+            title.setAttribute("class", "card-title");
+            subtitle.setAttribute("class", "card-subtitle mb-2 text-muted");
+            paragraph.setAttribute("class", "card-text");
+            
+            title.textContent = data.title;
+            subtitle.textContent = data.artist_display;
+            img.src = `https://www.artic.edu/iiif/2/${data.image_id}/full/843,/0/default.jpg`;
+            img.setAttribute("class", "card-img-top");
+            let textOnly = data.description.replace(/<[^>]*>/g, '');
+            paragraph.textContent = textOnly;
+
+            resultsContainer.append(cardContainer);
+            cardContainer.append(cardBody);
+            cardBody.append(title);
+            cardBody.append(subtitle);
+            cardBody.append(paragraph);
+            cardBody.append(img);
+        })
+
     } catch (error) {
         console.error(error.message);
     }
 }
+
