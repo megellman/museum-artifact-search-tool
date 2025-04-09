@@ -1,4 +1,6 @@
 let resultsContainer = document.querySelector("#resultsContainer");
+let form = document.querySelector("#searchForm");
+let searchInput = document.querySelector('#search');
 
 // query the api, get the info, create the cards and append them to the container
 window.onload = function(){
@@ -56,3 +58,9 @@ async function getArtifactInfo(search) {
         console.error(error.message);
     }
 }
+
+form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    let search = searchInput.value;
+    getArtifactInfo(search);
+})
