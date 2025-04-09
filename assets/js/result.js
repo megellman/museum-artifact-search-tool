@@ -34,10 +34,12 @@ async function getArtifactInfo(search) {
             img.src = `https://www.artic.edu/iiif/2/${data.image_id}/full/843,/0/default.jpg`;
             let textOnly = data.description.replace(/<[^>]*>/g, '');
             paragraph.textContent = textOnly;
-            cardBody.setAttribute("class", "card-body");
+            cardBody.setAttribute("class", "card-body p-2");
+            cardBody.setAttribute("style", "width:40%");
             title.setAttribute("class", "card-title");
             paragraph.setAttribute("class", "card-text");
-            img.setAttribute("class", "card-img-top d-block w-100");
+            img.setAttribute("class", "card-img-top d-block");
+            // img.setAttribute("style", "max-width: 30%");
             subtitle.setAttribute("class", "card-subtitle mb-2 text-muted");
         
 

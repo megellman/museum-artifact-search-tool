@@ -16,22 +16,19 @@
     </div>
 
     <!-- Search Tool -->
-    <div class="d-flex flex-shrink p-3 justify-content-between">
-        <div class="flex-column p-3" style="max-width: 40%;">
-            <form id="searchForm">
-                <div class="mb-3">
-                    <label for="search" class="form-label">Search</label>
-                    <input type="text" name="search" class="form-control" id="search">
+    <div class="p-3">
+        <div class="pb-3">
+            <form id="searchForm" class="d-flex flex-row">
+                <div class=" w-100 px-2">
+                    <input type="text" placeholder="Search" name="search" class="form-control w-100" id="search">
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-secondary align-self-start">Submit</button>
             </form>
         </div>
         <!-- Results Container -->
-        <div id="cardContainer" class="flex-column flex-grow-1 d-flex gap-2">
-            <div id="resultsContainer" class="card">
+            <div id="resultsContainer" class="card d-flex justify-content-between flex-wrap flex-row">
 
             </div>
-        </div>
     </div>
     <script src="./assets/js/result.js"></script>
 </body>
