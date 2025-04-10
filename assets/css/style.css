@@ -1,0 +1,11 @@
+#centeredDiv {
+    position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 60px;
+            background-color: #f8f9fa;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            text-align: center;
+}

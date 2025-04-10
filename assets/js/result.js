@@ -10,7 +10,6 @@ window.onload = function(){
 }
 async function getArtifactInfo(search) {
     const url = `https://api.artic.edu/api/v1/artworks/search?q=${search}&fields=id,title,description,artist,artist_display,place_of_origin,image_id,date_display,color,style_title,short_description`;
-    console.log(url)
     try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -28,24 +27,42 @@ async function getArtifactInfo(search) {
             let title = document.createElement("h5");
             let subtitle = document.createElement('h6');
             let img = document.createElement("img");
+            // if no photo, use no photo stock image
+            if(data.image_id){
+                img.src = `https://www.artic.edu/iiif/2/${data.image_id}/full/843,/0/default.jpg`;
+                
+                // if image does not load, replace with no photo available stock image
+                img.onerror = function() {
+                    this.onerror = null;
+                    this.src = "./assets/images/no-picture.png";
+                }
+            } else {
+                img.src = "./assets/images/no-picture.png";
+            }
+            img.setAttribute("class", "card-img-top d-block");
+                img.setAttribute("alt", `Image of ${data.title}`);
+                cardBody.append(img);
             let paragraph = document.createElement("p");
             
             title.textContent = data.title;
-            console.log(data.title)
             subtitle.textContent = data.artist_display;
-            img.src = `https://www.artic.edu/iiif/2/${data.image_id}/full/843,/0/default.jpg`;
-            let textOnly = data.description.replace(/<[^>]*>/g, '');
+            let regex = /<[^>]*>/g;
+            let textOnly;
+            if(regex.test(data.description)){
+                textOnly = data.description.replace(/<[^>]*>/g, '');
+            } else {
+                textOnly = data.description;
+            }
             paragraph.textContent = textOnly;
-            cardBody.setAttribute("class", "card-body p-2");
-            cardBody.setAttribute("style", "width:40%");
+            cardBody.setAttribute("class", "card-body");
+            cardBody.setAttribute("style", "max-width: 50%; min-height: 800px");
             title.setAttribute("class", "card-title");
             paragraph.setAttribute("class", "card-text");
-            img.setAttribute("class", "card-img-top d-block");
-            // img.setAttribute("style", "max-width: 30%");
+            
             subtitle.setAttribute("class", "card-subtitle mb-2 text-muted");
         
 
-            cardBody.append(img);
+            
             cardBody.append(subtitle);
             cardBody.append(title);
             cardBody.append(subtitle);
@@ -58,9 +75,3 @@ async function getArtifactInfo(search) {
         console.error(error.message);
     }
 }
-
-form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    let search = searchInput.value;
-    getArtifactInfo(search);
-})
