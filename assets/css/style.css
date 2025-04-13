@@ -9,3 +9,12 @@
             border-radius: 8px;
             text-align: center;
 }
+
+::placeholder{
+    color: white !important;
+    opacity: 1;
+}
+
+button.btn-dark{
+    background-color: rgb(76, 78, 80);
+}
