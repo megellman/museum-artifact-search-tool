@@ -1,4 +1,3 @@
-let resultsContainer = document.querySelector("#resultsContainer");
 let form = document.querySelector("#searchForm");
 let searchInput = document.querySelector('#search');
 let resultsPage = "./results.html";
