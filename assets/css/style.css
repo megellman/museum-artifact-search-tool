@@ -4,11 +4,27 @@
             left: 50%;
             transform: translate(-50%, -50%);
             padding: 40px 30px;
-            border: 4px solid #ccc !important;
+            border: 3px solid rgba(230, 236, 241, 0.152);
             border-radius: 3px;
+            background-color: rgba(230, 236, 241, 0.109);
             text-align: center;
 }
 
 button.btn-dark{
     background-color: rgb(76, 78, 80);
+}
+
+body{
+    font-family: 'Work Sans';
+}
+
+h1{
+    font-family: 'Insrument Serif';
+    letter-spacing: 6px;
+    font-size: 6rem;
+
+}
+
+#header-home{
+    font-size: 10rem;
 }
