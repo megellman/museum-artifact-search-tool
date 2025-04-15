@@ -7,5 +7,6 @@ form.addEventListener("submit", function (e) {
     e.preventDefault();
     let search = searchInput.value;
     let resulsPageWithParams = `${resultsPage}?search=${encodeURIComponent(search)}`;
-    location.replace(resulsPageWithParams);
+    window.location.href = resulsPageWithParams;
 })
+

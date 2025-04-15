@@ -28,3 +28,10 @@ h1{
 #header-home{
     font-size: 10rem;
 }
+
+footer a:hover, 
+#back-btn:hover {
+    cursor: pointer;
+    color: rgb(154, 154, 154) !important;
+    
+}
